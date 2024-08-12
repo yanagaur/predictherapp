@@ -9,8 +9,8 @@ model = joblib.load(file_path)
 
 app = Flask(__name__)
 
-# Restrict CORS to specific origin (Vercel app)
-CORS(app, resources={r"/*": {"origins": "https://pcosapp.vercel.app"}})
+# Allow CORS for both Vercel and ngrok during development
+CORS(app, resources={r"/*": {"origins": ["https://pcosapp.vercel.app", "https://e8de-14-97-132-203.ngrok-free.app"]}})
 
 # Define the BMI insights function
 def BMI_Insights(x):
