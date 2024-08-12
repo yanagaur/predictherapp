@@ -8,7 +8,9 @@ file_path = 'symptoms.sav'
 model = joblib.load(file_path)
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes and domains
+
+# Restrict CORS to specific origin (Vercel app)
+CORS(app, resources={r"/*": {"origins": "https://pcosapp.vercel.app"}})
 
 # Define the BMI insights function
 def BMI_Insights(x):
@@ -82,7 +84,7 @@ def noreport():
         })
 
     except Exception as e:
-        return jsonify({'error': str(e)})
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True,host='0.0.0.0', port=8989)
+    app.run(debug=True, host='0.0.0.0', port=8989)
