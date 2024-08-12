@@ -50,8 +50,9 @@ class _DetailedQuestionnaireScreenState extends State<DetailedQuestionnaireScree
     try {
       print(json.encode(formData));
 
+      // Update the URL to use the ngrok endpoint
       final response = await http.post(
-        Uri.parse('http://127.0.0.1:8989/noreport'),
+        Uri.parse('https://e8de-14-97-132-203.ngrok-free.app/ep_2kYrH0GZ4aAvXEwQIod1HrlfPS1'), // Updated ngrok URL
         headers: {'Content-Type': 'application/json'},
         body: json.encode(formData),
       );
